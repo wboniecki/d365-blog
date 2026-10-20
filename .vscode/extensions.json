@@ -1,0 +1,23 @@
+{
+  // VS Code offers to install these when the folder is opened.
+  // Phase 4 (Rust API) extensions are listed in CLAUDE.md, add them then.
+  "recommendations": [
+    // Needed
+    "astro-build.astro-vscode",
+    "anthropic.claude-code",
+    "esbenp.prettier-vscode",
+    "ms-azuretools.vscode-azurestaticwebapps",
+    "ms-azuretools.vscode-azureresourcegroups",
+    "github.vscode-github-actions",
+    "davidanson.vscode-markdownlint",
+    "editorconfig.editorconfig",
+
+    // Nice to have
+    "eamodio.gitlens",
+    "usernamehw.errorlens",
+    "yoavbls.pretty-ts-errors",
+    "vunguyentuan.vscode-css-variables",
+    "streetsidesoftware.code-spell-checker",
+    "redhat.vscode-yaml"
+  ]
+}
