@@ -88,10 +88,36 @@ Open Graph + Twitter Card tags, build-time share images per post, plain share
 links (LinkedIn, X, email, copy link), sitemap, RSS, canonical URLs, JSON-LD
 `BlogPosting`.
 
+## Phase 2 decisions (2026-10-22)
+
+These override the sections above where they differ.
+
+- Audience: portfolio + knowledge base for D365 developers. English only.
+- Vault: `src/content/posts/` is opened as its own Obsidian vault. It holds only public posts.
+- Images: one shared `src/content/posts/_attachments/` folder (set as Obsidian's
+  default attachment location), so Astro can optimize them.
+- URLs: the filename is the slug, in kebab-case → `/posts/<slug>/`. `[[slug]]` resolves by filename.
+- Fonts: Inter and JetBrains Mono are self-hosted via `@fontsource-variable/*`
+  (no Google Fonts requests). Segoe UI is used only where it is installed.
+- Dark mode: not before Phase 3.
+- Workspaces: Home, All posts, About. Portfolio and Snippets are dropped for now.
+- Wikilinks to a missing or draft post fail the production build and warn in dev.
+- Search, Filter, Sort and Subscribe are real `<button>`s that do nothing yet.
+- `module` is a zod enum: "X++", "Data entities", "Integrations", "DevOps".
+- `tags` must match `^[a-z0-9-]+$`.
+- X++ code blocks: Shiki aliases `xpp`/`x++` to `csharp`. A custom grammar may come later.
+- Obsidian syntax uses small remark plugins of our own in `src/lib/`, with no dependencies.
+- Workflow: one feature branch and PR per step. SWA builds a preview URL for each PR. `main` is production.
+
 ## Roadmap
 
-1. Foundations — repo, Astro scaffold, hello world deployed to Azure
-2. Astro site — layouts, content collections, Obsidian plugins, Fluent tokens
+1. Foundations — repo, Astro scaffold, hello world deployed to Azure (done 2026-10-20)
+2. Astro site, in steps:
+   1. Tokens, self-hosted fonts, `BaseLayout` (in progress)
+   2. D365 shell: Navbar, NavPane, ActionPane, `AppShell` layout
+   3. Content collection, zod schema, post page, X++ alias, sample posts
+   4. Obsidian remark plugins: wikilinks/embeds, callouts → message bars
+   5. Home workspace (tiles, grid, FactBoxes), post/module/tag listings, TOC
 3. SEO and sharing — public launch
 4. Rust API — optional, when a feature needs it
 

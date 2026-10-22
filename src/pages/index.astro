@@ -1,19 +1,11 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../site.config";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={site.description} />
-    <meta name="generator" content={Astro.generator} />
-    <title>{site.name}</title>
-  </head>
-  <body>
+<BaseLayout>
+  <main>
     <h1>{site.name}</h1>
     <p>Hello world. The blog by {site.author} is under construction.</p>
-  </body>
-</html>
+  </main>
+</BaseLayout>
