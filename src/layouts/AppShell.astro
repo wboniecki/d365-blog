@@ -1,0 +1,103 @@
+---
+// The D365-style frame around every page: navbar on top, navigation pane on
+// the left, action pane above the page content. Pages put their content in
+// the slot.
+import BaseLayout from "./BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import NavPane from "../components/NavPane.astro";
+import ActionPane from "../components/ActionPane.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <a class="skip-link" href="#main">
+    Skip to main content
+  </a>
+  <div class="shell">
+    <div class="shell__navbar">
+      <Navbar />
+    </div>
+    <div class="shell__navpane">
+      <NavPane />
+    </div>
+    <div class="shell__actions">
+      <ActionPane />
+    </div>
+    <main id="main" class="shell__main">
+      <slot />
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  /*
+   * Mobile first: one column, everything stacked.
+   * From 768px: two columns, pane on the left, page on the right.
+   */
+  .shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Only main grows. Without explicit rows, the spare height of min-height
+       is shared by every auto row and the bars drift apart. */
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      "navbar"
+      "navpane"
+      "actions"
+      "main";
+    min-height: 100vh;
+  }
+
+  .shell__navbar {
+    grid-area: navbar;
+  }
+
+  .shell__navpane {
+    grid-area: navpane;
+  }
+
+  .shell__actions {
+    grid-area: actions;
+  }
+
+  .shell__main {
+    grid-area: main;
+    padding: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      grid-template-columns: 220px 1fr;
+      grid-template-rows: auto auto 1fr;
+      grid-template-areas:
+        "navbar  navbar"
+        "navpane actions"
+        "navpane main";
+    }
+
+    .shell__main {
+      padding: var(--space-6);
+    }
+  }
+
+  /* Hidden until a keyboard user tabs to it. */
+  .skip-link {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 10;
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-surface);
+    transform: translateY(-200%);
+  }
+
+  .skip-link:focus {
+    transform: none;
+  }
+</style>

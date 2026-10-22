@@ -1,0 +1,98 @@
+---
+// Left navigation pane, like D365 F&O: Workspaces (pages) and Modules
+// (post categories). On mobile it's hidden until the navbar menu opens it.
+import { workspaces, modules } from "../site.config";
+
+// Normalise "/posts" and "/posts/" so the current page is matched either way.
+const path = Astro.url.pathname.replace(/\/?$/, "/");
+---
+
+<nav id="navpane" class="navpane" aria-label="Site">
+  <h2 class="navpane__heading">Workspaces</h2>
+  <ul class="navpane__list">
+    {workspaces.map((item) => (
+      <li>
+        <a
+          class="navpane__link"
+          href={item.href}
+          aria-current={path === item.href ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <h2 class="navpane__heading">Modules</h2>
+  <!-- Plain text until step 2.5 adds module pages and post counts. -->
+  <ul class="navpane__list">
+    {modules.map((name) => (
+      <li class="navpane__item">{name}</li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .navpane {
+    /* Fill the whole grid area so the white pane reaches the bottom. */
+    height: 100%;
+    padding: var(--space-2) 0;
+    background: var(--color-surface);
+    border-right: var(--border-width) solid var(--color-border);
+  }
+
+  .navpane__heading {
+    margin: var(--space-3) var(--space-4) var(--space-1);
+    font-size: var(--font-size-100);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .navpane__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .navpane__link,
+  .navpane__item {
+    display: flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    padding: 0 var(--space-4);
+    font-size: var(--font-size-200);
+    color: var(--color-text);
+    text-decoration: none;
+    /* Reserve the space of the "current page" bar so text doesn't shift. */
+    border-left: 3px solid transparent;
+  }
+
+  .navpane__item {
+    color: var(--color-text-secondary);
+  }
+
+  .navpane__link:hover {
+    color: var(--color-text);
+    background: var(--color-page);
+  }
+
+  .navpane__link[aria-current="page"] {
+    font-weight: 600;
+    background: var(--color-accent-tint);
+    border-left-color: var(--color-accent);
+  }
+
+  /* Mobile: hidden until opened by the menu button in the navbar. */
+  @media (max-width: 767px) {
+    .navpane:not(.is-open) {
+      display: none;
+    }
+
+    .navpane {
+      border-right: 0;
+      border-bottom: var(--border-width) solid var(--color-border);
+    }
+  }
+</style>
