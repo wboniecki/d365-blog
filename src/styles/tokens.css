@@ -1,0 +1,60 @@
+/*
+ * Design tokens, inspired by Fluent 2 and the D365 F&O web client.
+ * Components use these custom properties instead of raw values, so a future
+ * theme (e.g. dark mode, phase 3) only has to redefine this file.
+ */
+:root {
+  /* Brand */
+  --color-navbar: #0c2340;
+  --color-accent: #0f6cbd;
+  --color-accent-dark: #0c3b5e;
+  --color-accent-tint: #ebf3fc;
+
+  /* Surfaces and lines */
+  --color-page: #f3f2f1;
+  --color-surface: #ffffff;
+  --color-border: #e1dfdd;
+  --color-row-divider: #edebe9;
+
+  /* Text */
+  --color-text: #242424;
+  --color-text-secondary: #484644;
+  --color-text-muted: #605e5c;
+  --color-text-on-dark: #ffffff;
+
+  /* Message bars */
+  --color-warning-bg: #fff4ce;
+  --color-warning-border: #f2e1a0;
+  --color-warning-icon: #8a6100;
+
+  /* Type. Segoe UI is used where installed (Windows); it can't be served as a
+     web font, so self-hosted Inter is the fallback everywhere else. */
+  --font-body: "Segoe UI", "Inter Variable", Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", Consolas, monospace;
+  --font-size-100: 0.75rem;
+  --font-size-200: 0.875rem;
+  --font-size-300: 1rem;
+  --font-size-400: 1.25rem;
+  --font-size-500: 1.5rem;
+  --font-size-600: 2rem;
+  --line-height-body: 1.5;
+  --line-height-heading: 1.25;
+
+  /* Spacing (4px grid) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  /* Shape: square-ish corners, 1px borders, no shadows */
+  --radius-none: 0;
+  --radius-small: 2px;
+  --radius-medium: 4px;
+  --border-width: 1px;
+
+  /* Accessibility */
+  --touch-target: 44px;
+  --focus-ring: 2px solid var(--color-accent);
+}
