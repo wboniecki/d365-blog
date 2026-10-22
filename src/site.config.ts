@@ -5,4 +5,21 @@ export const site = {
   author: "Wiktor Boniecki",
   description:
     "Dynamics 365 Finance & Operations development notes and portfolio.",
+  repoUrl: "https://github.com/wboniecki/d365-blog",
 } as const;
+
+// Left navigation pane, "Workspaces" group.
+export const workspaces = [
+  { label: "Home", href: "/" },
+  { label: "All posts", href: "/posts/" },
+  { label: "About", href: "/about/" },
+] as const;
+
+// Post categories. Step 2.3 reuses this list for the zod `module` enum,
+// so adding a module stays a one-line change.
+export const modules = [
+  "X++",
+  "Data entities",
+  "Integrations",
+  "DevOps",
+] as const;

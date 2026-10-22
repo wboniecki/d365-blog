@@ -1,0 +1,37 @@
+---
+// Action pane under the navbar, like the D365 F&O button strip above a form.
+// The buttons are stubs: they render as real buttons but do nothing yet.
+const actions = ["Filter", "Sort", "Subscribe"];
+---
+
+<div class="actionpane" role="group" aria-label="Page actions">
+  {actions.map((label) => (
+    <button class="actionpane__button" type="button">
+      {label}
+    </button>
+  ))}
+</div>
+
+<style>
+  .actionpane {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding: 0 var(--space-2);
+    background: var(--color-surface);
+    border-bottom: var(--border-width) solid var(--color-border);
+  }
+
+  .actionpane__button {
+    padding: 0 var(--space-3);
+    font-size: var(--font-size-200);
+    color: var(--color-text);
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-medium);
+  }
+
+  .actionpane__button:hover {
+    background: var(--color-page);
+  }
+</style>

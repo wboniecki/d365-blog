@@ -1,11 +1,9 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import AppShell from "../layouts/AppShell.astro";
 import { site } from "../site.config";
 ---
 
-<BaseLayout>
-  <main>
-    <h1>{site.name}</h1>
-    <p>Hello world. The blog by {site.author} is under construction.</p>
-  </main>
-</BaseLayout>
+<AppShell>
+  <h1>{site.name}</h1>
+  <p>Hello world. The blog by {site.author} is under construction.</p>
+</AppShell>
